@@ -1,0 +1,21 @@
+{
+  "name": "lambda-starter",
+  "version": "1.0.0",
+  "description": "Biolerplate for developing Lambda Functions",
+  "main": "index.js",
+  "author": "Grant Jordan <dev@codebyjordan.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "docker-compose run test",
+    "deploy": "docker-compose run deploy"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.430.0"
+  },
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/node": "^12.12.7",
+    "@types/sharp": "^0.23.0",
+    "typescript": "^3.7.2"
+  }
+}

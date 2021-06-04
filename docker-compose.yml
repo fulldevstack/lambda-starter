@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  test:
+    image: lambci/lambda:build-nodejs10.x
+    environment:
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    command: index.handler
+    volumes:
+      - ./dist/index.js:/var/task/index.js
+  deploy:
+    image: lambda:deploy
+    build:
+      context: .
+      args:
+        - AWS_REGION=${AWS_REGION}
+        - FUNCTION_NAME=${FUNCTION_NAME}
+    environment:
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - FUNCTION_NAME=${FUNCTION_NAME}
+    volumes:
+      - ./dist/index.js:/var/task/index.js
